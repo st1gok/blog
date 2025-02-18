@@ -68,7 +68,7 @@
             color: light-dark(rgba(16, 16, 16, 0.3), rgba(255, 255, 255, 0.3));
             border-color: light-dark(rgba(118, 118, 118, 0.3), rgba(195, 195, 195, 0.3));
         }
-        }
+
     </style>
 </head>
 <body>
@@ -79,17 +79,16 @@
 <!-- Скрываемая форма для добавления нового поста -->
 <div class="form-container" style="display: none;" id="postForm">
     <h2>Добавить пост</h2>
-<!--    <form th:action="@{/posts}" method="POST" th:object="${post}" enctype="application/x-www-form-urlencoded">-->
+
     <form th:action="@{/posts}" method="POST" th:object="${post}" enctype="multipart/form-data">
         <label for="name">Название:</label>
-        <input type="text" id="name" name="name" required="true"></input>
+        <input type="text" id="name" name="name" required="true">
         <label for="img">Прикрепите картинку:</label>
-        <input type="file" id="img" name="img" accept="image/*" class="form-control-file" required="true"></input>
-        <button type="submit">Загрузить</button>
+        <input type="file" id="img" name="img" accept="image/*" class="form-control-file" required="true">
         <label for="text">Текст:</label>
-        <input type="text" id="text" name="text" required="true"></input>
+        <input type="text" id="text" name="text" required="true">
         <label for="tagsString">Теги (ввод - через пробел):</label>
-        <input type="text" id="tagsString" name="tagsString"></input>
+        <input type="text" id="tagsString" name="tagsString">
         <button type="submit">Добавить</button>
     </form>
 </div>
