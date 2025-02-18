@@ -18,7 +18,7 @@ public class Application {
 
     static void startTomcat() throws Exception {
         Tomcat tomcat = new Tomcat();
-        int port = Optional.ofNullable(System.getenv("PORT")).map(Integer::parseInt).orElse(8089);
+        int port = Optional.ofNullable(System.getenv("PORT")).map(Integer::parseInt).orElse(8080);
         tomcat.getConnector().setPort(port);
         AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
         appContext.register(ApplicationConfig.class);
