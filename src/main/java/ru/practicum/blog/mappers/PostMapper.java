@@ -21,12 +21,15 @@ public interface PostMapper extends EntityMapper<PostDto, Post> {
 
     @Named("convertImgToBytes")
     default byte[] convertImgToBytes(MultipartFile img) throws IOException {
-        return img.getBytes();
+        if (img != null) {
+            return img.getBytes();
+        }
+        return null;
     }
 
 
     @Named("convertBytesToImg")
     default MultipartFile convertBytesToImg(byte[] img) throws IOException {
-        return  new BASE64DecodedMultipartFile(img);
+        return new BASE64DecodedMultipartFile(img);
     }
 }
