@@ -6,17 +6,16 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.blog.dto.CommentDto;
 import ru.practicum.blog.dto.PostDto;
-import ru.practicum.blog.services.LikeableCommentablePostService;
+import ru.practicum.blog.services.LikeablePostService;
 
 @Controller
 public class PostController {
 
-    private LikeableCommentablePostService postService;
+    private LikeablePostService postService;
 
     @Autowired
-    public PostController(LikeableCommentablePostService postService) {
+    public PostController(LikeablePostService postService) {
         this.postService = postService;
     }
 
@@ -61,17 +60,5 @@ public class PostController {
     public String likePost(@PathVariable(name = "id") Long postId) {
         postService.addLike(postId);
         return "redirect:/posts/{id}";
-    }
-
-    @PostMapping(value = "posts/{postid}/comment")
-    public String commentPost(@PathVariable(name = "postid") Long postId, @ModelAttribute CommentDto comment) {
-        postService.addComment(comment, postId);
-        return "redirect:/posts/{postid}";
-    }
-
-    @PostMapping(value = "posts/{postid}/removeComment/{commentId}", params = "_method=delete")
-    public String deleteComment(@PathVariable(name = "postid") Long postId, @PathVariable(name = "commentId") Long commentId) {
-        postService.deleteComment(commentId);
-        return "redirect:/posts/{postid}";
     }
 }

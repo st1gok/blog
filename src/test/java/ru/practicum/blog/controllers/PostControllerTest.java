@@ -17,7 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import ru.practicum.blog.config.ApplicationConfig;
-import ru.practicum.blog.services.LikeableCommentablePostService;
+import ru.practicum.blog.services.LikeablePostService;
 
 @SpringJUnitWebConfig(classes = ApplicationConfig.class)
 @WebAppConfiguration()
@@ -29,7 +29,7 @@ class PostControllerTest {
     private MockMvc mockMvc;
 
     @MockitoBean
-    LikeableCommentablePostService postService;
+    LikeablePostService postService;
 
     @BeforeEach
     void setUp() {

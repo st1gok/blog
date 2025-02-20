@@ -5,13 +5,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.practicum.blog.dto.CommentDto;
 import ru.practicum.blog.dto.PostDto;
-import ru.practicum.blog.mappers.CommentMapper;
 import ru.practicum.blog.mappers.PostMapper;
 import ru.practicum.blog.models.Like;
-import ru.practicum.blog.models.Post;
-import ru.practicum.blog.repositories.CommentsRepository;
 import ru.practicum.blog.repositories.LikeRepository;
 import ru.practicum.blog.repositories.PostResourceCrudRepository;
 import ru.practicum.blog.repositories.TagsRepository;
@@ -19,22 +15,16 @@ import ru.practicum.blog.repositories.TagsRepository;
 import java.util.Optional;
 
 @Service
-public class LikeableCommentablePostDefaultService extends PostDefaultService implements LikeableCommentablePostService {
+public class LikeablePostDefaultService extends PostDefaultService implements LikeablePostService {
 
-    private final CommentMapper commentMapper;
-    private final CommentsRepository commentsRepository;
     private final LikeRepository likeRepository;
 
     @Autowired
-    public LikeableCommentablePostDefaultService(PostMapper postMapper,
-                                                 PostResourceCrudRepository postResourceRepository,
-                                                 TagsRepository tagsRepository,
-                                                 CommentMapper commentMapper,
-                                                 CommentsRepository commentsRepository,
-                                                 LikeRepository likeRepository) {
+    public LikeablePostDefaultService(PostMapper postMapper,
+                                      PostResourceCrudRepository postResourceRepository,
+                                      TagsRepository tagsRepository,
+                                      LikeRepository likeRepository) {
         super(postMapper, postResourceRepository, tagsRepository);
-        this.commentMapper = commentMapper;
-        this.commentsRepository = commentsRepository;
 
         this.likeRepository = likeRepository;
     }
@@ -73,20 +63,5 @@ public class LikeableCommentablePostDefaultService extends PostDefaultService im
     @Override
     public void addLike(Long resourceId) {
         likeRepository.addLike(resourceId);
-    }
-
-    @Override
-    public void addComment(CommentDto commentDto, Long postId) {
-        Optional<Post> optionalPost = postResourceRepository.findById(postId);
-        if (optionalPost.isPresent()) {
-            Post post = optionalPost.get();
-            post.addComment(commentMapper.toEntity(commentDto));
-            postResourceRepository.save(post);
-        }
-    }
-
-    @Override
-    public void deleteComment(Long commentId) {
-        commentsRepository.deleteById(commentId);
     }
 }

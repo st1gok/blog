@@ -9,5 +9,6 @@ import org.springframework.data.relational.core.mapping.Table;
 public class Comment {
     @Id
     private Long id;
+    private Long postId;
     private String text;
 }

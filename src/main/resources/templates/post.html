@@ -107,7 +107,7 @@
     <h2>Добавить комментарий</h2>
     <form th:action="@{/posts/{id}/comment(id=${post.id})}" method="POST"
           th:object="${comment}" >
-        <input type="hidden">
+        <input type="hidden" id="postId" name="postId" th:value="${post.id}">
         <label for="text">Текст:</label>
         <input type="text" id="text" name="text" required>
         <button type="submit">Добавить комментарий</button>
