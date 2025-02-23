@@ -4,16 +4,15 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.springframework.boot.test.context.SpringBootTest;
 import ru.practicum.blog.config.RepositoriesMocks;
-import ru.practicum.blog.config.TestConfig;
 import ru.practicum.blog.dto.CommentDto;
 import ru.practicum.blog.models.Comment;
 import ru.practicum.blog.repositories.CommentsRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringJUnitConfig(classes = TestConfig.class)
+@SpringBootTest
 @RepositoriesMocks
 class CommentServiceTest {
 

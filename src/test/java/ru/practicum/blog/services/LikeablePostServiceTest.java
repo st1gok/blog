@@ -5,12 +5,9 @@ import org.junit.jupiter.api.Test;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
-import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.springframework.boot.test.context.SpringBootTest;
 import ru.practicum.blog.config.RepositoriesMocks;
-import ru.practicum.blog.config.TestConfig;
 import ru.practicum.blog.dto.PostDto;
 import ru.practicum.blog.models.Post;
 import ru.practicum.blog.repositories.LikeRepository;
@@ -18,7 +15,7 @@ import ru.practicum.blog.repositories.PostResourceCrudRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringJUnitConfig(classes = TestConfig.class)
+@SpringBootTest
 @RepositoriesMocks
 class LikeablePostServiceTest {
 

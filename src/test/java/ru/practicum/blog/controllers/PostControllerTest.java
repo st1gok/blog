@@ -1,40 +1,28 @@
 package ru.practicum.blog.controllers;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
-import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
-import ru.practicum.blog.config.ApplicationConfig;
+
 import ru.practicum.blog.services.LikeablePostService;
 
-@SpringJUnitWebConfig(classes = ApplicationConfig.class)
-@WebAppConfiguration()
+@WebMvcTest(PostController.class)
 class PostControllerTest {
 
     @Autowired
-    private WebApplicationContext wac;
-
     private MockMvc mockMvc;
 
     @MockitoBean
     LikeablePostService postService;
-
-    @BeforeEach
-    void setUp() {
-        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
-    }
 
     @Test
     void getPosts() throws Exception{
