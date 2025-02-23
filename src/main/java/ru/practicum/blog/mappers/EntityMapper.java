@@ -1,7 +1,5 @@
 package ru.practicum.blog.mappers;
 
-import java.util.List;
-
 /**
  * Contract for a generic dto to entity mapper.
  *
